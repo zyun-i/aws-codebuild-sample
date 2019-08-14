@@ -8,7 +8,7 @@ env:
 phases:
   install:
     runtime-versions:
-      php: 7.2
+      php: 7.3
     commands:
       - echo Entered the install phase...
       - apt-get update -y
@@ -21,3 +21,8 @@ phases:
     commands:
       - echo Entered the build phase...
       - echo Build started on `date`
+      - echo Build started on `date` > date.txt
+
+artifacts:
+  files:
+    - '**/*'
