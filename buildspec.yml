@@ -10,6 +10,26 @@ phases:
     runtime-versions:
       php: 7.3
     commands:
+      - echo $AWS_DEFAULT_REGION
+      - echo $AWS_REGION
+      - echo $CODEBUILD_BUILD_ARN
+      - echo $CODEBUILD_BUILD_ID
+      - echo $CODEBUILD_BUILD_IMAGE
+      - echo $CODEBUILD_BUILD_SUCCEEDING
+      - echo $CODEBUILD_INITIATOR
+      - echo $CODEBUILD_KMS_KEY_ID
+      - echo $CODEBUILD_LOG_PATH
+      - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
+      - echo $CODEBUILD_SOURCE_REPO_URL
+      - echo $CODEBUILD_SOURCE_VERSION
+      - echo $CODEBUILD_SRC_DIR
+      - echo $CODEBUILD_START_TIME
+      - echo $CODEBUILD_WEBHOOK_ACTOR_ACCOUNT_ID
+      - echo $CODEBUILD_WEBHOOK_BASE_REF
+      - echo $CODEBUILD_WEBHOOK_EVENT
+      - echo $CODEBUILD_WEBHOOK_HEAD_REF
+      - echo $CODEBUILD_WEBHOOK_TRIGGER
+      - echo $HOME
       - echo Entered the install phase...
       - apt-get update -y
     finally:
@@ -26,3 +46,4 @@ phases:
 artifacts:
   files:
     - '**/*'
+  name: $CODEBUILD_WEBHOOK_HEAD_REF-$(date +%Y-%m-%d-%H:%m:%S.%N)
