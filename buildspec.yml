@@ -47,4 +47,4 @@ artifacts:
   type: zip
   files:
     - '**/*.txt'
-  name: app-$(date +%Y-%m-%d-%H:%m:%S.%N).zip
+  name: app.zip
