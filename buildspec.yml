@@ -31,7 +31,7 @@ phases:
       - echo $CODEBUILD_WEBHOOK_TRIGGER
       - echo $HOME
       - echo Entered the install phase...
-      - apt-get update -y
+      # - apt-get update -y
     finally:
       - echo This always runs even if the update or install command fails
   pre_build:
