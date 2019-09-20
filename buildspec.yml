@@ -46,6 +46,4 @@ phases:
 artifacts:
   type: zip
   files:
-    - '**/*.txt'
-    - '**/*.yml'
-  name: app.zip
+    - '**/*'
