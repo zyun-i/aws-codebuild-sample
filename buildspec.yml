@@ -31,7 +31,12 @@ phases:
       - echo $CODEBUILD_WEBHOOK_TRIGGER
       - echo $HOME
       - echo Entered the install phase...
-      # - apt-get update -y
+      - |
+          export DEBIAN_FRONTEND=noninteractive
+          php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+          php composer-setup.php ;
+          php -r "unlink('composer-setup.php');" ;
+          mv composer.phar /usr/local/bin/composer
     finally:
       - echo This always runs even if the update or install command fails
   pre_build:
@@ -39,9 +44,15 @@ phases:
       - echo Entered the pre_build phase...
   build:
     commands:
-      - echo Entered the build phase...
       - echo Build started on `date`
-      - echo Build started on `date` > date.txt
+      - echo Installing composer deps
+      - composer install --no-progress --no-suggest
+      
+  post_build:
+    commands:
+      - rm -rf .git .gitignore
+
+
 
 artifacts:
   files:
