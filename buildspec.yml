@@ -46,3 +46,4 @@ phases:
 artifacts:
   files:
     - '**/*'
+  name: $CODEBUILD_RESOLVED_SOURCE_VERSION
