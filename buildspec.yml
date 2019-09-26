@@ -31,6 +31,7 @@ phases:
       - echo $CODEBUILD_WEBHOOK_TRIGGER
       - echo $HOME
       - echo Entered the install phase...
+      - $HOGE=abcdefg
       # - apt-get update -y
     finally:
       - echo This always runs even if the update or install command fails
@@ -42,10 +43,11 @@ phases:
       - echo Entered the build phase...
       - echo Build started on `date`
       - echo Build started on `date` > date.txt
+      - echo $HOGE
 
 artifacts:
   type: zip
   files:
     - '**/*.txt'
     - '**/*.yml'
-  name: app.zip
+  name: app$HOGE.zip
