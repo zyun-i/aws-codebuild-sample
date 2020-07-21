@@ -1,3 +1,7 @@
 # README
 
 CodeBuildのテスト。
+
+## License
+
+MIT
