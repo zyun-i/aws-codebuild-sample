@@ -32,7 +32,6 @@ phases:
       - echo $HOME
       - echo Entered the install phase...
       - HOGE=abcdefg
-      # - apt-get update -y
     finally:
       - echo This always runs even if the update or install command fails
   pre_build:
@@ -40,13 +39,18 @@ phases:
       - echo Entered the pre_build phase...
   build:
     commands:
-      - echo Entered the build phase...
       - echo Build started on `date`
       - echo Build started on `date` > date.txt
       - echo $HOGE
+      - echo Installing composer deps
+      - composer install --no-progress --no-suggest
+      
+  post_build:
+    commands:
+      - rm -rf .git .gitignore
+
 
 artifacts:
-  type: zip
   files:
     - '**/*.txt'
     - '**/*.yml'
