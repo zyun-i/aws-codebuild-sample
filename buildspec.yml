@@ -31,12 +31,7 @@ phases:
       - echo $CODEBUILD_WEBHOOK_TRIGGER
       - echo $HOME
       - echo Entered the install phase...
-      - |
-          export DEBIAN_FRONTEND=noninteractive
-          php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-          php composer-setup.php ;
-          php -r "unlink('composer-setup.php');" ;
-          mv composer.phar /usr/local/bin/composer
+      - HOGE=abcdefg
     finally:
       - echo This always runs even if the update or install command fails
   pre_build:
@@ -45,6 +40,8 @@ phases:
   build:
     commands:
       - echo Build started on `date`
+      - echo Build started on `date` > date.txt
+      - echo $HOGE
       - echo Installing composer deps
       - composer install --no-progress --no-suggest
       
@@ -53,8 +50,8 @@ phases:
       - rm -rf .git .gitignore
 
 
-
 artifacts:
   files:
-    - '**/*'
-  name: app-$CODEBUILD_RESOLVED_SOURCE_VERSION.zip
+    - '**/*.txt'
+    - '**/*.yml'
+  name: app$HOGE.zip

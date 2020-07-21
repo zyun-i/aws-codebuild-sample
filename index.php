@@ -1,4 +1,4 @@
 <?php
 
-# phpinfooooooo
+
 phpinfo();
